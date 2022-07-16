@@ -1,0 +1,22 @@
+CREATE TABLE books (id INTEGER PRIMARY KEY, name TEXT, author TEXT, publisher TEXT, rating INTEGER, price INTEGER);
+
+INSERT INTO books VALUES (1, "Remarkably Bright Creatures", "Shelby Van Pelt", "HarperCollins Publishers", 4.7, 14.99);
+INSERT INTO books VALUES (2, "What My Bones Know", "Stephanie Foo", "Random House LLC", 4.7, 13.99);
+INSERT INTO books VALUES (3, "All My Rage", "Sabaa Tahir", "Penguin Group (USA) LLC", 4.7, 10.99);
+INSERT INTO books VALUES (4, "The Maid", "Nita Prose", "Random House LLC", 4.3, 13.99);
+INSERT INTO books VALUES (5, "River of the Gods", "Candice Millard", "Random House LLC", 4.4, 14.99);
+INSERT INTO books VALUES (6, "Lessons in Chemistry", "Bonnie Garmus", "Random House LLC", 4.6, 14.99);
+INSERT INTO books VALUES (7, "Memphis", "Tara M. Stringfellow ", "Random House LLC", 4.5, 13.99);
+INSERT INTO books VALUES (8, "Sea of Tranquility", "Emily St. John Mandel", "Random House LLC", 4.3, 11.99);
+INSERT INTO books VALUES (9, "Half-Blown Rose", "Leesa Cross-Smith", "Hachette Book Group", 4, 13.99);
+INSERT INTO books VALUES (10, "Hello, Molly!", "Molly Shannon & Sean Wilson", "HarperCollins Publishers", 4.6, 14.99);
+INSERT INTO books VALUES (11, "The Kaiju Preservation Society", "John Scalzi", "	Macmillan", 4.4, 13.99);
+INSERT INTO books VALUES (12, "Sleepwalk", "Dan Chaon", "Macmillan", 4.1, 14.99);
+INSERT INTO books VALUES (13, "The First Kennedys", "Neal Thompson ", "	HarperCollins Publishers", 4.3, 13.99);
+INSERT INTO books VALUES (14, "Such Big Dreams", "Reema Patel", "Random House LLC", 4.3, 13.99);
+INSERT INTO books VALUES (15, "Young Mungo", "Douglas Stuart", "Grove Press", 4.5, 9.45);
+
+SELECT * FROM books ORDER BY price desc;
+
+SELECT max(publisher) from books;
+SELECT avg(price) from books;
