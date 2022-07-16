@@ -1,3 +1,5 @@
+--Create a database with Amazon´s TOP 15 Best books of 2022 (so far)
+
 CREATE TABLE books (id INTEGER PRIMARY KEY, name TEXT, author TEXT, publisher TEXT, rating INTEGER, price INTEGER);
 
 INSERT INTO books VALUES (1, "Remarkably Bright Creatures", "Shelby Van Pelt", "HarperCollins Publishers", 4.7, 14.99);
@@ -16,7 +18,11 @@ INSERT INTO books VALUES (13, "The First Kennedys", "Neal Thompson ", "	HarperCo
 INSERT INTO books VALUES (14, "Such Big Dreams", "Reema Patel", "Random House LLC", 4.3, 13.99);
 INSERT INTO books VALUES (15, "Young Mungo", "Douglas Stuart", "Grove Press", 4.5, 9.45);
 
+--display the database ordered by price. 
 SELECT * FROM books ORDER BY price desc;
 
+--publisher with most books? 
 SELECT max(publisher) from books;
+
+--what is the avg price of books? 
 SELECT avg(price) from books;
