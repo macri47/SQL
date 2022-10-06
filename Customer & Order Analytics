@@ -1,0 +1,54 @@
+-- How many orders were placed in January?
+SELECT
+COUNT(orderid)
+From jansales;
+
+-- How many of those orders were for an iPhone?
+
+SELECT
+COUNT(orderid)
+From jansales
+WHERE Product='iPhone';
+
+-- Select the customer account numbers for all the orders that were placed in February.
+
+SELECT
+acctnum
+From customers
+    INNER JOIN FebSales
+    ON customers.order_ID = FebSales.orderID;
+
+-- Which product was the cheapest one sold in January, and what was the price? For this one, you are going to use the commands distinct and MIN(). Using 'SELECT distinct' will remove duplicate rows from your results. The MIN() command will allow you to select the smallest value from the price column. This is a hard one - see if you can do it, but don't be afraid to look at the hint or answer if you need to!
+
+SELECT DISTINCT
+Product
+, MIN(price) AS Price
+FROM JanSales;
+
+-- What is the total revenue for each product sold in January? (Revenue can be calculated using the number of products sold and the price of the products).
+
+SELECT
+SUM(Quantity)*price AS Revenue
+, Product
+FROM JanSales
+GROUP BY product;
+
+-- Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
+
+select 
+sum(Quantity), 
+product, 
+sum(quantity)*price as revenue
+FROM BIT_DB.FebSales 
+WHERE location = '548 Lincoln St, Seattle, WA 98101'
+GROUP BY product;
+
+--How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?
+
+SELECT 
+count(customers.acctnum), 
+avg(quantity*price)
+FROM FebSales
+LEFT JOIN customers
+ON FebSales.orderid=customers.order_id
+WHERE FebSales.Quantity>2
