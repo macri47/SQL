@@ -120,3 +120,31 @@ FROM invoices
 WHERE title = "Sales Support Agent" AND invoices.InvoiceDate LIKE '2009%' 
 GROUP BY employees.FirstName
 ORDER BY (round(sum(invoices.Total), 2))  DESC LIMIT 1;
+
+-- #15
+SELECT
+COUNT(CustomerId) AS "Total Customers",
+Country
+FROM customers
+GROUP BY Country
+ORDER BY COUNT(CustomerId) DESC;
+
+-- #16
+SELECT
+customers.Country,
+ROUND(SUM(Invoices.Total), 2) As "Total Sales"
+FROM customers
+    INNER JOIN invoices ON invoices.CustomerId = customers.CustomerId
+GROUP BY Country
+ORDER BY ROUND(SUM(Invoices.Total), 2) DESC;
+
+-- #17
+SELECT
+customers.Country,
+genres.Name AS Genre
+FROM customers
+    INNER JOIN invoices ON invoices.CustomerId = customers.CustomerId
+    INNER JOIN invoice_items ON invoice_items.InvoiceId = invoices.InvoiceId
+    INNER JOIN tracks ON tracks.TrackId = invoice_items.TrackId
+    INNER JOIN genres ON genres.GenreId = tracks.GenreId
+GROUP BY genres.Name;
