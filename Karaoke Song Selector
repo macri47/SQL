@@ -1,4 +1,4 @@
--- In this SQL code, I'm querying a database to choose what songs to sing. 
+-- In this SQL code, I'm querying a database to choose what songs to sing
 
 CREATE TABLE songs (
     id INTEGER PRIMARY KEY,
