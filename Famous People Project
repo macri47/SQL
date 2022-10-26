@@ -1,4 +1,4 @@
-/* Create tables with TOP 5 Fottball Players from The Guardian List */
+/* TOP 5 Fottball Players - The Guardian */
 
 CREATE TABLE football_players
     (id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -18,56 +18,80 @@ CREATE TABLE stats
     (id INTEGER PRIMARY KEY AUTOINCREMENT,
     fp_id INTEGER,
     position TEXT,
-    retired TEXT,
-    goals INTEGER);
+    retired TEXT);
 
 INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Lionel Messi", "Argentina", "4/6/1987", 170, 72);
 INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Cristiano Ronaldo", "Portugal", "5/2/1985", 170, 72);
 INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Xavi Hernandez", "Spain", "25/1/1980", 170, 68);
 INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Andres Iniesta", " Spain ", "11/5/1984", 171, 68);
 INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Zlatan Ibrahimović", "Sweden", "3/10/1981", 195, 95);
+INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Radamel Farcao", "Colombia", "10/2/1986", 177, 72);
+INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Robin van Persie", "Netherlands", "6/8/1983", 183, 71);
+INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Andrea Pirlo", "Italy", "19/5/1979", 177, 68);
+INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Yaya Toure", "Ivory Coast", "13/5/1983", 188, 78);
+INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Edinson Cavani", "Uruguay", "14/2/1987", 184, 71);
+INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Sergio Aguero", "Argentina", "2/6/1988", 173, 77);
+INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Iker Casillas", "Spain", "20/5/1981", 182, 84);
+INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Neymar", "Brazil", "5/2/1992", 175, 68);
+INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Sergio Busquets", "Spain", "16/6/1988", 189, 76);
+INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Xabi Alonso", "Spain", "25/11/1981", 183, 79);
 
 INSERT INTO fp_club (fp_id, club, national_selection) VALUES (1, "Paris Saint Germain FC", "Argentina");
 INSERT INTO fp_club (fp_id, club, national_selection) VALUES (2, "Manchester United FC", "Portugal");
 INSERT INTO fp_club (fp_id, club, national_selection) VALUES (3, "Al Sadd SC", "Spain");
 INSERT INTO fp_club (fp_id, club, national_selection) VALUES (4, "Vissel Kobe", "Spain");
 INSERT INTO fp_club (fp_id, club, national_selection) VALUES (5, "AC Milan", "Sweden");
+INSERT INTO fp_club (fp_id, club, national_selection) VALUES (6, "Rayoo Vallecano", "Colombia");
+INSERT INTO fp_club (fp_id, club, national_selection) VALUES (7, "Feyenoord", "NEtherlands");
+INSERT INTO fp_club (fp_id, club, national_selection) VALUES (8, "New York City FC", "Italy");
+INSERT INTO fp_club (fp_id, club, national_selection) VALUES (9, "Qingdao Huanghai", "Ivory Coast");
+INSERT INTO fp_club (fp_id, club, national_selection) VALUES (10, "Valencia", "Uruguay");
+INSERT INTO fp_club (fp_id, club, national_selection) VALUES (11, "Barcelona", "Argentina");
+INSERT INTO fp_club (fp_id, club, national_selection) VALUES (12, "Porto", "Spain");
+INSERT INTO fp_club (fp_id, club, national_selection) VALUES (13, "Paris Saint Germain FC", "Brazil");
+INSERT INTO fp_club (fp_id, club, national_selection) VALUES (14, "Barcelona", "Spain");
+INSERT INTO fp_club (fp_id, club, national_selection) VALUES (15, "Bayern Mmunich", "Spain");
 
-INSERT INTO stats (fp_id, position, retired, goals) VALUES (1, "forward", "no", 780);
-INSERT INTO stats (fp_id, position, retired, goals) VALUES (2, "forward", "no", 817);
-INSERT INTO stats (fp_id, position, retired, goals) VALUES (2, "midfielder", "yes", 113);
-INSERT INTO stats (fp_id, position, retired, goals) VALUES (2, "midfielder", "no", 57);
-INSERT INTO stats (fp_id, position, retired, goals) VALUES (2, "forward", "no", 570);
+INSERT INTO stats (fp_id, position, retired) VALUES (1, "forward", "no");
+INSERT INTO stats (fp_id, position, retired) VALUES (2, "forward", "no");
+INSERT INTO stats (fp_id, position, retired) VALUES (4, "midfielder", "no");
+INSERT INTO stats (fp_id, position, retired) VALUES (5, "forward", "no");
+INSERT INTO stats (fp_id, position, retired) VALUES (6, "forward", "no");
+INSERT INTO stats (fp_id, position, retired) VALUES (7, "striker", "yes");
+INSERT INTO stats (fp_id, position, retired) VALUES (8, "midfielder", "no");
+INSERT INTO stats (fp_id, position, retired) VALUES (9, "midfielder", "yes");
+INSERT INTO stats (fp_id, position, retired) VALUES (10, "striker", "no");
+INSERT INTO stats (fp_id, position, retired) VALUES (11, "striker", "no");
+INSERT INTO stats (fp_id, position, retired) VALUES (12, "goalkeeper", "no");
+INSERT INTO stats (fp_id, position, retired) VALUES (13, "forward", "no");
+INSERT INTO stats (fp_id, position, retired) VALUES (14, "defender/midfielder", "no");
+INSERT INTO stats (fp_id, position, retired) VALUES (15, "midfielder", "yes");
 
---Display table showing all information.
 SELECT * 
 FROM football_players;
 
---Display table showing all information.
 SELECT * 
 FROM fp_club;
 
---Display table showing all information.
 SELECT *
 FROM stats;
 
---Join two tables.
 SELECT
-football_players.fullname AS Name,
-stats.goals
+football_players.fullname AS "Football Player",
+stats.retired AS Retired
 FROM football_players
 JOIN stats
-ON football_players.id = stats.fp_id;
+ON football_players.id = stats.fp_id
+WHERE stats.retired = "yes";
 
---Join three tables.
 SELECT
 football_players.fullname AS Name,
-fp_club.national_selection,
-stats.position,
-stats.retired
+fp_club.national_selection AS "National Team",
+stats.position
 FROM football_players
 JOIN fp_club
 ON football_players.id = fp_club.fp_id
 JOIN stats
-ON fp_club.fp_id = stats.fp_id;
+ON fp_club.fp_id = stats.fp_id
+ORDER BY stats.position;
 
