@@ -1,0 +1,73 @@
+/* Create tables with TOP 5 Fottball Players from The Guardian List */
+
+CREATE TABLE football_players
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    birthplace TEXT,
+    birthday TEXT,
+    height INTEGER,
+    weight INTEGER);
+    
+CREATE TABLE fp_club
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fp_id INTEGER,
+    club TEXT,
+    national_selection TEXT);
+    
+CREATE TABLE stats
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fp_id INTEGER,
+    position TEXT,
+    retired TEXT,
+    goals INTEGER);
+
+INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Lionel Messi", "Argentina", "4/6/1987", 170, 72);
+INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Cristiano Ronaldo", "Portugal", "5/2/1985", 170, 72);
+INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Xavi Hernandez", "Spain", "25/1/1980", 170, 68);
+INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Andres Iniesta", " Spain ", "11/5/1984", 171, 68);
+INSERT INTO football_players (fullname, birthplace, birthday, height, weight) VALUES ("Zlatan Ibrahimović", "Sweden", "3/10/1981", 195, 95);
+
+INSERT INTO fp_club (fp_id, club, national_selection) VALUES (1, "Paris Saint Germain FC", "Argentina");
+INSERT INTO fp_club (fp_id, club, national_selection) VALUES (2, "Manchester United FC", "Portugal");
+INSERT INTO fp_club (fp_id, club, national_selection) VALUES (3, "Al Sadd SC", "Spain");
+INSERT INTO fp_club (fp_id, club, national_selection) VALUES (4, "Vissel Kobe", "Spain");
+INSERT INTO fp_club (fp_id, club, national_selection) VALUES (5, "AC Milan", "Sweden");
+
+INSERT INTO stats (fp_id, position, retired, goals) VALUES (1, "forward", "no", 780);
+INSERT INTO stats (fp_id, position, retired, goals) VALUES (2, "forward", "no", 817);
+INSERT INTO stats (fp_id, position, retired, goals) VALUES (2, "midfielder", "yes", 113);
+INSERT INTO stats (fp_id, position, retired, goals) VALUES (2, "midfielder", "no", 57);
+INSERT INTO stats (fp_id, position, retired, goals) VALUES (2, "forward", "no", 570);
+
+--Display table showing all information.
+SELECT * 
+FROM football_players;
+
+--Display table showing all information.
+SELECT * 
+FROM fp_club;
+
+--Display table showing all information.
+SELECT *
+FROM stats;
+
+--Join two tables.
+SELECT
+football_players.fullname AS Name,
+stats.goals
+FROM football_players
+JOIN stats
+ON football_players.id = stats.fp_id;
+
+--Join three tables.
+SELECT
+football_players.fullname AS Name,
+fp_club.national_selection,
+stats.position,
+stats.retired
+FROM football_players
+JOIN fp_club
+ON football_players.id = fp_club.fp_id
+JOIN stats
+ON fp_club.fp_id = stats.fp_id;
+
