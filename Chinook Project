@@ -1,4 +1,4 @@
-/* Fnal BIT SQL project. 
+/* Fnal BIT SQL project. Analyze Digital media store and include tables for artists, albums, media tracks, invoices, and customers joining tables as needed.
 */
 
 -- #1
