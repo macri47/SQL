@@ -16,13 +16,13 @@ FROM customers
     INNER JOIN FebSales
     ON customers.order_ID = FebSales.orderID;
 
--- Which product was the cheapest one sold in January, and what was the price? For this one, you are going to use the commands distinct and MIN(). Using 'SELECT distinct' will remove duplicate rows from your results. The MIN() command will allow you to select the smallest value from the price column. This is a hard one - see if you can do it, but don't be afraid to look at the hint or answer if you need to!
+-- Which product was the cheapest one sold in January, and what was the price? 
 SELECT DISTINCT
 Product
 , MIN(price) AS Price
 FROM JanSales;
 
--- What is the total revenue for each product sold in January? (Revenue can be calculated using the number of products sold and the price of the products).
+-- What is the total revenue for each product sold in January?
 SELECT
 SUM(Quantity)*price AS Revenue
 , Product
@@ -55,7 +55,7 @@ FROM FebSales
 WHERE location LIKE '%Los Angeles%'
 GROUP BY product
 
---Which locations in New York received at least 3 orders in January, and how many orders did they each receive? (Hint: use HAVING).
+--Which locations in New York received at least 3 orders in January, and how many orders did they each receive? 
 SELECT
 location AS Location
 , COUNT(orderID) AS Orders
@@ -72,14 +72,14 @@ FROM FebSales
 WHERE Product Like '%headphone%'
 GROUP BY Product;
 
---What was the average amount spent per account in February? (Hints: For this question, we want the average amount spent / number of accounts, not the amount spent by each account. To multiply, you can use the * symbol, and to divide, you can use the / symbol.)
+--What was the average amount spent per account in February?
 SELECT
 AVG(Quantity*price) AS AVG_Spent
 FROM FebSales
     LEFT JOIN customers
     ON FebSales.orderID = customers.order_id;
     
---What was the average quantity of products purchased per account in February? (Hint: just like question 3, we want the overall average, not the average for each account individually).
+--What was the average quantity of products purchased per account in February?
 SELECT
 AVG(Quantity*product) AS AVG_Purchase
 FROM FebSales
