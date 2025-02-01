@@ -1,0 +1,16 @@
+SELECT * 
+FROM superstore 
+LIMIT 2
+;
+
+-- ordered by price
+SELECT *
+FROM superstore
+ORDER by price desc
+;
+
+-- show statistic about price by category
+SELECT category, AVG(price)
+FROM superstore
+WHERE category='Kitchen Supplies'
+;
